@@ -259,8 +259,9 @@ impl WhiteboxTool for RasterStreamsToVector {
 
         // calculate the number of inflowing cells
         let mut num_inflowing: Array2D<i8> = Array2D::new(rows, columns, -1, -1)?;
-        let dx = [1, 1, 1, 0, -1, -1, -1, 0];
-        let dy = [-1, 0, 1, 1, 1, 0, -1, -1];
+        //         0  1  2  3   4   5   6   7
+        let dx = [ 1, 1, 1, 0, -1, -1, -1,  0];
+        let dy = [-1, 0, 1, 1,  1,  0, -1, -1];
 
         let inflowing_vals = if esri_style {
             [8f64, 16f64, 32f64, 64f64, 128f64, 1f64, 2f64, 4f64]
