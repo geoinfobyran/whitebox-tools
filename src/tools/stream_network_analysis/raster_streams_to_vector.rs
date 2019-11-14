@@ -264,7 +264,10 @@ impl WhiteboxTool for RasterStreamsToVector {
         let dy = [-1, 0, 1, 1,  1,  0, -1, -1];
 
         let inflowing_vals = if esri_style {
-            [8f64, 16f64, 32f64, 64f64, 128f64, 1f64, 2f64, 4f64]
+            // Esri
+            // [8f64, 16f64, 32f64, 64f64, 128f64, 1f64, 2f64, 4f64]
+            // Richdem
+            [8f64, 1f64, 2f64, 3f64, 4f64, 5f64, 6f64, 7f64]
         } else {
             [16f64, 32f64, 64f64, 128f64, 1f64, 2f64, 4f64, 8f64]
         };
@@ -319,14 +322,24 @@ impl WhiteboxTool for RasterStreamsToVector {
         } else {
             // This maps Esri-style D8 pointer values
             // onto the cell offsets in dx and dy.
-            pntr_matches[1] = 1usize;
-            pntr_matches[2] = 2usize;
-            pntr_matches[4] = 3usize;
+            // pntr_matches[1] = 1usize;
+            // pntr_matches[2] = 2usize;
+            // pntr_matches[4] = 3usize;
+            // pntr_matches[8] = 4usize;
+            // pntr_matches[16] = 5usize;
+            // pntr_matches[32] = 6usize;
+            // pntr_matches[64] = 7usize;
+            // pntr_matches[128] = 0usize;
+            // This maps Richdem-style D8 pointer values
+            // onto the cell offsets in dx and dy.
+            pntr_matches[1] = 5usize;
+            pntr_matches[2] = 6usize;
+            pntr_matches[3] = 7usize;
+            pntr_matches[4] = 0usize;
+            pntr_matches[5] = 1usize;
+            pntr_matches[6] = 2usize;
+            pntr_matches[7] = 3usize;
             pntr_matches[8] = 4usize;
-            pntr_matches[16] = 5usize;
-            pntr_matches[32] = 6usize;
-            pntr_matches[64] = 7usize;
-            pntr_matches[128] = 0usize;
         }
 
         let (mut row, mut col): (isize, isize);
